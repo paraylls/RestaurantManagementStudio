@@ -23,23 +23,23 @@ namespace ManagerService.Data
 
         public void DeleteManager(int id)
         {
-            var managerToDelete = _context.Manager.FirstOrDefault(m => m.ID == id);
+            var managerToDelete = _context.Manager.FirstOrDefault(m => m.Id == id);
             if (managerToDelete != null)
             {
                 _context.Manager.Remove(managerToDelete);
             }
         }
 
-        public IEnumerable<ManagerModel> GetAllManagers() => [.. _context.Manager];
+        public IEnumerable<ManagerModel> GetAllManagers() => _context.Manager.ToList();
 
 
-        public ManagerModel GetManagerById(int id) => _context.Manager.FirstOrDefault(m => m.ID == id);
+        public ManagerModel GetManagerById(int id) => _context.Manager.FirstOrDefault(m => m.Id == id);
 
         public bool SaveChanges() => _context.SaveChanges() >= 0;
 
         public void UpdateManager(int id, ManagerModel manager)
         {
-            var existingManager = _context.Manager.FirstOrDefault(m => m.ID == id);
+            var existingManager = _context.Manager.FirstOrDefault(m => m.Id == id);
             if (existingManager != null)
             {
                 existingManager.FirstName = manager.FirstName;
