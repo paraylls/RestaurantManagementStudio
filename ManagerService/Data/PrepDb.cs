@@ -1,9 +1,4 @@
-﻿using ManagerService.Models; 
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Linq;
+﻿using ManagerService.Models;
 
 namespace ManagerService.Data
 {

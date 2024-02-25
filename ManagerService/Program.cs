@@ -31,6 +31,5 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
 });
 
-app.Run();
-
 PrepDb.PrepPopulation(app);
+app.Run();
