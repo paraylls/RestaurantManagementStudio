@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagerService", "ManagerService.csproj", "{946F2492-3D01-4549-8202-34B7C5EA0A9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterService", "WaiterService\WaiterService.csproj", "{C54164C4-1D0F-4D06-AD59-D1E87F4F92C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{946F2492-3D01-4549-8202-34B7C5EA0A9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{946F2492-3D01-4549-8202-34B7C5EA0A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{946F2492-3D01-4549-8202-34B7C5EA0A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{946F2492-3D01-4549-8202-34B7C5EA0A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C54164C4-1D0F-4D06-AD59-D1E87F4F92C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C54164C4-1D0F-4D06-AD59-D1E87F4F92C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C54164C4-1D0F-4D06-AD59-D1E87F4F92C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C54164C4-1D0F-4D06-AD59-D1E87F4F92C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E0835716-414C-4C6E-B970-05138B2C431A}
+		SolutionGuid = {E9466A89-CD69-4E2A-ABA9-C28A72253523}
 	EndGlobalSection
 EndGlobal
