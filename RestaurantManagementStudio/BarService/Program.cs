@@ -1,4 +1,4 @@
-using ManagerService.Data;
+using BarService.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(opt =>
     opt.UseInMemoryDatabase("InMem"));
 
-builder.Services.AddScoped<IManagerRepo, ManagerRepo>();
+builder.Services.AddScoped<IBartenderRepo, BartenderRepo>();
 
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -14,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
 
 if (app.Environment.IsDevelopment())
 {
@@ -32,4 +33,5 @@ app.UseEndpoints(endpoints =>
 });
 
 PrepDb.PrepPopulation(app);
+
 app.Run();
