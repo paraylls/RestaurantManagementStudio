@@ -1,4 +1,5 @@
 using ManagerService.Data;
+using ManagerService.SyncDataServices.Http;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,10 +9,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IManagerRepo, ManagerRepo>();
 
+builder.Services.AddHttpClient<IManagerDataClient, HttpManagerDataClient>();
+
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+Console.WriteLine($"--> BarService Endpoint: {builder.Configuration["BarService"]}");
 
 var app = builder.Build();
 

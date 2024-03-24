@@ -2,6 +2,7 @@
 using ManagerService.Data;
 using ManagerService.Dtos;
 using ManagerService.Models;
+using ManagerService.SyncDataServices.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagerService.Controllers
@@ -11,12 +12,17 @@ namespace ManagerService.Controllers
     public class ManagerController : Controller
     {
         private readonly IManagerRepo _repository;
+        private readonly IManagerDataClient _managerDataClient;
         private readonly IMapper _mapper;
 
-        public ManagerController(IMapper mapper, IManagerRepo repository)
+        public ManagerController(
+            IMapper mapper,
+            IManagerRepo repository,
+            IManagerDataClient managerDataClient)
         {
-            _repository = repository;
             _mapper = mapper;
+            _repository = repository;
+            _managerDataClient = managerDataClient;
         }
 
         [HttpGet]
@@ -42,13 +48,22 @@ namespace ManagerService.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ManagerReadDto> CreateManager(ManagerCreateDto managerCreateDto)
+        public async Task<ActionResult<ManagerReadDto>> CreateManager(ManagerCreateDto managerCreateDto)
         {
             var managerModel = _mapper.Map<ManagerModel>(managerCreateDto);
             _repository.CreateManager(managerModel);
             _repository.SaveChanges();
 
             var managerReadDto = _mapper.Map<ManagerReadDto>(managerModel);
+
+            try
+            {
+                await _managerDataClient.SendManagerToBartender(managerReadDto);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"--> Could not send synchronously: {exception.Message}");
+            }
 
             return CreatedAtRoute(nameof(GetManagerById), new { Id = managerReadDto.Id }, managerReadDto);
         }
