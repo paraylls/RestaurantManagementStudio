@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ApplicationDbContext>(opt =>
-    opt.UseInMemoryDatabase("InMem"));
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseInMemoryDatabase("InMem"));
 
 builder.Services.AddScoped<IManagerRepo, ManagerRepo>();
 

@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaiterService", "WaiterServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagerService", "ManagerService\ManagerService.csproj", "{926C3A4A-6583-47A1-97A5-FCC661CD28B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarService", "BarService\BarService.csproj", "{CFF978D6-9AB7-4B05-BB27-502431EC8E4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarService", "BarService\BarService.csproj", "{CFF978D6-9AB7-4B05-BB27-502431EC8E4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{3BA46805-3074-4238-97C5-31DA5AC5F4EC}"
+	ProjectSection(SolutionItems) = preProject
+		manager-depl.yaml = manager-depl.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
