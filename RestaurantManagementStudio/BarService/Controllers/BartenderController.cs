@@ -1,4 +1,6 @@
-﻿using BarService.Data;
+﻿using AutoMapper;
+using BarService.Data;
+using BarService.Dtos;
 using BarService.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +11,12 @@ namespace BarService.Controllers
     public class BartenderController : ControllerBase
     {
         private readonly IBartenderRepo _repository;
+        private readonly IMapper _mapper;
 
-        public BartenderController(IBartenderRepo repository)
+        public BartenderController(IBartenderRepo repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -34,10 +38,17 @@ namespace BarService.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateBartender(BartenderModel bartender)
+        public ActionResult<BartenderReadDto> CreateBartender(BartenderCreateDto bartenderCreateDto)
         {
-            _repository.CreateBartender(bartender);
-            return CreatedAtRoute(nameof(GetBartenderById), new { id = bartender.Id }, bartender);
+
+            var bartenderModel = _mapper.Map<BartenderModel>(bartenderCreateDto);
+            _repository.CreateBartender(bartenderModel);
+            _repository.SaveChanges();
+
+            var bartenderReadDto = _mapper.Map<BartenderReadDto>(bartenderModel);
+
+            return CreatedAtRoute(nameof(GetBartenderById), new { Id = bartenderReadDto.Id }, bartenderReadDto);
+
         }
 
         [HttpPut("{id}")]

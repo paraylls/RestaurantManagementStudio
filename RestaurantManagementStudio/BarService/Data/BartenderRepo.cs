@@ -34,6 +34,7 @@ namespace BarService.Data
 
         public IEnumerable<BartenderModel> GetAllBartenders() => _context.Bartenders.ToList();
 
+        public bool SaveChanges() => _context.SaveChanges() >= 0;
 
         public BartenderModel GetBartenderById(int id) => _context.Bartenders.FirstOrDefault(b => b.Id == id);
 
