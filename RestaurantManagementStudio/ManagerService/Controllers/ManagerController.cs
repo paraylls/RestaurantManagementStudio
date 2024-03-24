@@ -8,24 +8,29 @@ namespace ManagerService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManagerController(IMapper mapper, IManagerRepo repository) : Controller
+    public class ManagerController : Controller
     {
-        private readonly IManagerRepo _repository = repository;
-        private readonly IMapper _mapper = mapper;
+        private readonly IManagerRepo _repository;
+        private readonly IMapper _mapper;
+
+        public ManagerController(IMapper mapper, IManagerRepo repository)
+        {
+            _repository = repository;
+            _mapper = mapper;
+        }
 
         [HttpGet]
         public ActionResult<IEnumerable<ManagerReadDto>> GetAllManagers()
         {
-            Console.WriteLine("---> Getting Platforms...");
+            Console.WriteLine("---> Getting Managers...");
 
-            var manger = _repository.GetAllManagers();
+            var managers = _repository.GetAllManagers();
 
-            return Ok(_mapper.Map<IEnumerable<ManagerReadDto>>(manger));
+            return Ok(_mapper.Map<IEnumerable<ManagerReadDto>>(managers));
         }
 
-
-        [HttpGet("{id}", Name= "GetManagersById")]
-        public ActionResult<ManagerReadDto> GetManagersById(int id)
+        [HttpGet("{id}", Name = "GetManagersById")]
+        public ActionResult<ManagerReadDto> GetManagerById(int id)
         {
             var manager = _repository.GetManagerById(id);
             if (manager != null)
@@ -45,7 +50,7 @@ namespace ManagerService.Controllers
 
             var managerReadDto = _mapper.Map<ManagerReadDto>(managerModel);
 
-            return CreatedAtRoute(nameof(GetManagersById), new { Id = managerReadDto.Id }, managerReadDto);
+            return CreatedAtRoute(nameof(GetManagerById), new { Id = managerReadDto.Id }, managerReadDto);
         }
     }
 }

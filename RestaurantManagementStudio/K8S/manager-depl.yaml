@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manager-depl
+spec:
+  selector:
+    matchLabels:
+      app: managerservice
+  template:
+    metadata:
+      labels:
+        app: managerservice
+    spec:
+      containers:
+      - name: managerservice
+        image: paraylls/managerservice:latest
