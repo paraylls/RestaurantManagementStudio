@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: manager-depl
+  name: bars-depl
 spec:
   selector:
     matchLabels:
-      app: managerservice
+      app: barservice
   template:
     metadata:
       labels:
-        app: managerservice
+        app: barservice
     spec:
       containers:
-      - name: managerservice
-        image: paraylls/managerservice:latest
+      - name: barservice
+        image: paraylls/barservice:latest
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name:  manager-clusterip-srv
+  name:  bar-clusterip-srv
 spec:
   type: ClusterIP
   selector:
-    app:  managerservice
+    app:  barservice
   ports:
-  - name:  managerservice
+  - name:  barservice
     protocol: TCP
     port:  80
     targetPort:  80
